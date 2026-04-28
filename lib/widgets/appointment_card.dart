@@ -21,8 +21,7 @@ class AppointmentCard extends StatelessWidget {
           /// IMAGE
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
-            child: Image.network(
-              "https://i.pravatar.cc/300",
+            child: Image.asset("assets/images/doctor_photo.png",
               height: 140,
               width: double.infinity,
               fit: BoxFit.cover,
