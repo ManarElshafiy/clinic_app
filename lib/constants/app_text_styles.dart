@@ -10,8 +10,8 @@ class AppTextStyles {
 
   static const TextStyle title = TextStyle(
     fontSize: 18,
-    fontWeight: FontWeight.w600,
-    color: AppColors.textPrimary,
+    fontWeight: FontWeight.w900,
+    color: AppColors.primaryDark,
   );
 
   static const TextStyle body = TextStyle(

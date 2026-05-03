@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import '../constants/app_colors.dart';
 import '../constants/app_spacing.dart';
 import '../constants/app_text_styles.dart';
-
 import '../widgets/appointment_card.dart';
 import '../widgets/doctor_card.dart';
 import '../widgets/monthly_checkup_card.dart';
+import '../widgets/custom_header.dart';
+
 
 class AppointmentsScreen extends StatefulWidget {
   const AppointmentsScreen({super.key});
@@ -22,7 +24,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.surface,
 
       /// Bottom Nav (زي الصورة)
       bottomNavigationBar: _buildBottomNav(),
@@ -34,13 +36,12 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
             children: [
 
               /// HEADER
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("My Appointments",
-                      style: AppTextStyles.headline),
-                  const Icon(Icons.notifications_none)
-                ],
+              CustomHeader(
+                title: "The Clinical Sanctuary",
+                imagePath: "../assets/images/user_profile_photo.png",
+                trailing: SvgPicture.asset(
+                  "assets/icons/green_bell.svg",
+                ) ,
               ),
 
               const SizedBox(height: AppSpacing.sm),

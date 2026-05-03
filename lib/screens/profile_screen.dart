@@ -1,80 +1,91 @@
 import 'package:flutter/material.dart';
-
 import '../constants/app_colors.dart';
-import '../constants/app_text_styles.dart';
-import '../constants/app_spacing.dart';
-import '../constants/app_radius.dart';
-import '../constants/app_buttons.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import '../widgets/custom_header.dart';
+import '../widgets/profile_stats.dart';
+import '../widgets/profile_menu_item.dart';
+import '../widgets/profile_card.dart';
+import '../widgets/profile_header.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
+
+  static const Color background = Color(0xFFF7F9FB);
+
+  static const String imageUrl =
+      "../assets/images/user_profile (1).png";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: AppColors.surface,
 
-      body: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [AppColors.primary, AppColors.secondary],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
 
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 18),
 
-              // 🔵 Profile Picture Circle
-              Container(
-                padding: const EdgeInsets.all(AppSpacing.lg),
-                decoration: BoxDecoration(
-                  color: AppColors.surface.withOpacity(0.15),
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.person,
-                  size: 80,
-                  color: AppColors.surface,
-                ),
-              ),
+            // ✅ Profile Header
+            CustomHeader(
+              title: "The Clinical Sanctuary",
+              imagePath: imageUrl,
+              trailing: SvgPicture.asset(
+                "assets/icons/green_bell.svg",
+              ) ,
+            ),
 
-              const SizedBox(height: AppSpacing.lg),
+            const SizedBox(height: 14),
+            ProfileHeader(
+                imageUrl: imageUrl,
+                primary: AppColors.surface,
+            ),
 
-              // 👤 User Name
-              Text(
-                "Your Name",
-                style: AppTextStyles.headline.copyWith(
-                  color: AppColors.surface,
-                ),
-              ),
+            // ✅ Profile Stats
+            ProfileStats(
+              primary: AppColors.surface,
+            ),
 
-              const SizedBox(height: AppSpacing.sm),
+            const SizedBox(height: 14),
 
-              // 📧 Subtitle / Email / Role
-              Text(
-                "your.email@example.com",
-                style: AppTextStyles.body.copyWith(
-                  color: AppColors.surface.withOpacity(0.85),
-                ),
-              ),
+            // ✅ Menu Items
+            const ProfileMenuItem(
+              iconPath: "assets/icons/ID_card_icon.svg",
+              text: "Personal Info",
+            ),
+            const ProfileMenuItem(
+              iconPath: "assets/icons/calender_icon.svg" ,
+              text: "Appointment History",
+            ),
+            const ProfileMenuItem(
+              iconPath: "assets/icons/bell_icon.svg",
+              text: "Notifications",
+            ),
+            const ProfileMenuItem(
+              iconPath: "assets/icons/payment_card.svg" ,
+              text: "Payment Methods",
+            ),
+            const ProfileMenuItem(
+              iconPath: "assets/icons/help_icon.svg" ,
+              text: "Help Center",
+            ),
+            const ProfileMenuItem(
+              iconPath: "assets/icons/logout_icon.svg" ,
+              text: "Logout",
+              isLogout: true,
+            ),
 
-              const SizedBox(height: AppSpacing.xl),
+            const SizedBox(height: 16),
 
-              // 🔘 Action Button
-              ElevatedButton(
-                style: AppButtons.primaryButton,
-                onPressed: () {
-                  // TODO: Add edit profile or logout logic
-                },
-                child: const Text("Edit Profile"),
-              ),
-            ],
-          ),
+            // ✅ Bottom Card
+            ProfileCard(
+              primary: AppColors.primaryDark,
+            ),
+
+            const SizedBox(height: 20),
+          ],
         ),
       ),
     );
